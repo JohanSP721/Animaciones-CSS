@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			text-decoration: none;
+			box-sizing: border-box;
+		}
+
+		body {
+			height: 100vh;
+			width: 100%;
+			display: grid;
+			place-items: center;
+		}
+
+		.phone {
+			position: relative;
+			width: 375px;
+			height: 671px;
+			border: 10px solid black;
+			border-radius: 40px;
+			box-shadow: -25px -5px 50px 2.5px rgba(0, 0, 0, .8), 15px 2.5px 50px 1px rgba(0, 0, 0, 0.3);
+			background-color: #CCEFFF;
+			overflow: hidden;
+			counter-reset: score;
+		}
+
+		input[type=checkbox] {
+			appearance: none;
+			cursor: pointer;
+			height: 50px;
+			position: relative;
+			top: 0%;
+			width: 80px;
+			z-index: 2;
+		}
+
+		input[type=checkbox]:focus {
+			appearance: none;
+			outline: none;
+		}
+
+		input[type=checkbox]:checked {
+			counter-increment: score;
+		}
+
+		.layer {
+			position: absolute;
+		}
+
+		@keyframes jump {
+			0% {
+				bottom: 0;
+			}
+
+			25% {
+				bottom: -100px;
+			}
+
+			50% {
+				bottom: 0;
+			}
+
+			75% {
+				bottom: -100px;
+			}
+
+			100% {
+				bottom: 0;
+			}
+		}
+
+		.one {
+			z-index: 1;
+			bottom: 1px;
+			right: 75px;
+			height: 450px;
+			width: 80px;
+			background-color: transparent;
+			border-radius: 15px;
+			animation-name: jump;
+			animation-duration: 2s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+		}
+
+		.two {
+			z-index: 2;
+			bottom: 1px;
+			left: 75px;
+			height: 450px;
+			width: 80px;
+			background-color: transparent;
+			border-radius: 15px;
+			animation-name: jump;
+			animation-duration: 3s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+		}
+
+		.three {
+			z-index: 3;
+			bottom: 1px;
+			left: 0;
+			right: 0;
+			margin-left: auto;
+			margin-right: auto;
+			height: 400px;
+			width: 275px;
+			background-color: brown;
+			border-radius: 15px;
+		}
+
+		.four {
+			z-index: 4;
+			bottom: 1px;
+			left: 50px;
+			height: 300px;
+			width: 80px;
+			background-color: transparent;
+			border-radius: 15px;
+			animation-name: jump;
+			animation-duration: 4s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+		}
+
+		.five {
+			z-index: 5;
+			bottom: 1px;
+			left: 15px;
+			height: 250px;
+			width: 250px;
+			background-color: brown;
+			border-radius: 15px;
+		}
+
+		.six {
+			z-index: 6;
+			bottom: 1px;
+			right: 20px;
+			height: 250px;
+			width: 80px;
+			background-color: transparent;
+			border-radius: 15px;
+			animation-name: jump;
+			animation-duration: 5s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+		}
+
+		.seven {
+			z-index: 7;
+			bottom: 1px;
+			right: 0;
+			height: 200px;
+			width: 250px;
+			background-color: brown;
+			border-radius: 15px;
+		}
+
+		.eight {
+			z-index: 8;
+			bottom: 1px;
+			left: 0;
+			right: 0;
+			margin-left: auto;
+			margin-right: auto;
+			height: 100px;
+			width: 250px;
+			border-radius: 40px;
+			background-color: #66a167;
+		}
+
+		.nine {
+			z-index: 9;
+			bottom: 1px;
+			left: 0;
+			height: 75px;
+			width: 125px;
+			border-radius: 30px;
+			background-color: white;
+		}
+
+		.ten {
+			z-index: 10;
+			bottom: 1px;
+			right: 0;
+			height: 75px;
+			width: 125px;
+			border-radius: 30px;
+			background-color: white;
+		}
+
+		.left-ear--outer {
+			position: absolute;
+			left: 10px;
+			top: 0;
+			width: 20px;
+			height: 50px;
+			border-radius: 90%;
+			background-color: white;
+		}
+
+		.left-ear--inner {
+			position: absolute;
+			left: 15px;
+			top: 10px;
+			width: 10px;
+			height: 50px;
+			border-radius: 90%;
+			background-color: pink;
+		}
+
+		.right-ear--outer {
+			position: absolute;
+			right: 10px;
+			top: 0;
+			width: 20px;
+			height: 50px;
+			border-radius: 90%;
+			background-color: white;
+		}
+
+		.right-ear--inner {
+			position: absolute;
+			right: 15px;
+			top: 10px;
+			width: 10px;
+			height: 50px;
+			border-radius: 90%;
+			background-color: pink;
+		}
+
+		.head {
+			position: absolute;
+			top: 30px;
+			width: 100%;
+			height: 80px;
+			border-radius: 50%;
+			background-color: white;
+		}
+
+		.head__eye {
+			position: absolute;
+			top: 15px;
+			height: 4px;
+			width: 4px;
+			border-radius: 50%;
+			background-color: black;
+			left: 50;
+			animation-name: blink;
+			animation-duration: 2s;
+			animation-iteration-count: infinite;
+		}
+
+		@keyframes blink {
+			0% {
+				height: 4px;
+			}
+
+			15% {
+				height: 1px;
+				transform: translate(0, 2px);
+			}
+
+			25% {
+				height: 4px;
+				transform: translate(0, 0px);
+			}
+		}
+
+		.head__eye--left {
+			left: 30px;
+		}
+
+		.head__eye--right {
+			right: 30px;
+		}
+
+		.three::after,
+		.five::after,
+		.seven::after {
+			content: "";
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 100%;
+			height: 40px;
+			border-radius: 12.5px;
+			background: linear-gradient(135deg, #6aa067 25%, transparent 25%) -50px 0,
+				linear-gradient(-135deg, #6aa067 25%, transparent 25%) -50px 0;
+			background-size: 40px 100px;
+			background-position: 140px 0 0 30px 0;
+		}
+
+		.three::before,
+		.five::before,
+		.seven::before {
+			content: "";
+			position: absolute;
+			left: 0px;
+			top: 15px;
+			width: 100%;
+			height: 40px;
+			background: linear-gradient(135deg, #a6543d 25%, transparent 25%) -50px 0,
+				linear-gradient(-135deg, #a6543d 25%, transparent 25%) -50px 0;
+			background-size: 40px 100px;
+			background-position: 140px 0 0 30px 0;
+		}
+
+		.grass {
+			width: 120px;
+			height: 120px;
+			background-color: #66a167;
+			border-radius: 50%;
+			position: absolute;
+			left: 70px;
+			top: -40px;
+		}
+
+		.grass::after {
+			content: "";
+			width: 90px;
+			height: 90px;
+			background-color: #66a167;
+			border-radius: 50%;
+			position: absolute;
+			left: 90px;
+			top: 30px;
+		}
+
+		.grass::before {
+			content: "";
+			width: 90px;
+			height: 90px;
+			background-color: #66a167;
+			border-radius: 50%;
+			position: absolute;
+			left: -70px;
+			top: 30px;
+		}
+
+		.nine::before {
+			content: "";
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			background-color: white;
+			top: -40px;
+			left: -5px;
+		}
+
+		.ten::before {
+			content: "";
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			background-color: white;
+			top: -40px;
+			right: -5px;
+		}
+
+		.counter {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 75px;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+
+		.score::after {
+			content: counter(score);
+		}
+	</style>
+</head>
+
+<body>
+	<div class="phone">
+		<div class="layer one">
+			<input title="bunny" type="checkbox">
+			<div class="left-ear--outer"></div>
+			<div class="left-ear--inner"></div>
+			<div class="right-ear--outer"></div>
+			<div class="right-ear--inner"></div>
+			<div class="head">
+				<div class="head__eye head__eye--left"></div>
+				<div class="head__eye head__eye--right"></div>
+			</div>
+		</div>
+		<div class="layer two">
+			<input title="bunny" type="checkbox">
+			<div class="left-ear--outer"></div>
+			<div class="left-ear--inner"></div>
+			<div class="right-ear--outer"></div>
+			<div class="right-ear--inner"></div>
+			<div class="head">
+				<div class="head__eye head__eye--left"></div>
+				<div class="head__eye head__eye--right"></div>
+			</div>
+		</div>
+		<div class="layer three"></div>
+		<div class="layer four">
+			<input title="bunny" type="checkbox">
+			<div class="left-ear--outer"></div>
+			<div class="left-ear--inner"></div>
+			<div class="right-ear--outer"></div>
+			<div class="right-ear--inner"></div>
+			<div class="head">
+				<div class="head__eye head__eye--left"></div>
+				<div class="head__eye head__eye--right"></div>
+			</div>
+		</div>
+		<div class="layer five"></div>
+		<div class="layer six">
+			<input title="bunny" type="checkbox">
+			<div class="left-ear--outer"></div>
+			<div class="left-ear--inner"></div>
+			<div class="right-ear--outer"></div>
+			<div class="right-ear--inner"></div>
+			<div class="head">
+				<div class="head__eye head__eye--left"></div>
+				<div class="head__eye head__eye--right"></div>
+			</div>
+		</div>
+		<div class="layer seven"></div>
+		<div class="layer eight">
+			<div class="grass"></div>
+		</div>
+		<div class="layer nine"></div>
+		<div class="layer ten"></div>
+		<div class="counter">
+			<h1>Animation Land</h1>
+			<h2 class="score">Score: </h2>
+		</div>
+	</div>
+</body>
+
+</html>
